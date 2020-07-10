@@ -5,23 +5,19 @@ import { Route, Switch } from 'react-router-dom'
 import ShopPage from './pages/shopPage/shop'
 import Header from './components/header/header.component'
 
+import { connect } from 'react-redux';
+
 import SignInform from './components/SignInSignOutForm/signIn.component'
 import { auth } from './firebase/firebase.config';
-
+import { currentUser } from './redux/user/user.actions';
+import { setCurrentUser } from './redux/user/user.actions';
 
 class App extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      currentUser: null
-    }
-  }
   
   unsubscribeFromAuth = null;
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser : user})      
+      this.props.setCurrentUser(user)      
       console.log(user);      
     })
   }
@@ -33,19 +29,21 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header CurrentUser = { this.state.currentUser } />
+        <Header/>
         <Switch>
           <Route exact path='/signIn' component={SignInform} />
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopPage} />
         </Switch>
-        <footer>{(this.state.currentUser) ? this.state.currentUser.displayName : "No user Found"}</footer>
+        {/* <footer>{(this.state.currentUser != null) ? this.state.currentUser.displayName : "No user Found"}</footer> */}
       </div>
     );
   }
 }
 
 
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
 
-
-export default App;
+export default connect(null, mapDispatchToProps)(App);
