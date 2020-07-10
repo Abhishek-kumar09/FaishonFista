@@ -6,9 +6,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
-    <Provider>
+    // <Provider>
         <BrowserRouter>
             <App />
-        </BrowserRouter>
-    </Provider>,
+        </BrowserRouter>,
+    // </Provider>,
     document.getElementById('root'));
