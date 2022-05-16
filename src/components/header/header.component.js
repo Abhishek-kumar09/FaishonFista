@@ -11,11 +11,8 @@ const Header = ({ CurrentUser }) => (
       <img className="header-icon" src={logo} alt="appIcon" />
       </Link>
       <div className='options'>
-        <Link className='option' to='/shop'>
-          SHOP
-        </Link>
-        <Link className='option' to='/shop'>
-          CONTACT
+        <Link className='option' to='/'>
+          HOME
         </Link>
         {CurrentUser ? (
           <div className='option' onClick={() => auth.signOut()}>

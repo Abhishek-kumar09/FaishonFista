@@ -33,7 +33,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/signIn' component={SignInform} />
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/home" component={ShopPage} />
         </Switch>
         {/* <footer>{(this.state.currentUser != null) ? this.state.currentUser.displayName : "No user Found"}</footer> */}
       </div>
